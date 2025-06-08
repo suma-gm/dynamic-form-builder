@@ -1,0 +1,28 @@
+<p class="toolbar-container m-0">
+  <mat-toolbar color="primary">
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item [routerLink]="'form-build'">
+        <mat-icon>business</mat-icon>
+        <span>Form Build</span>
+      </button>
+      <button mat-menu-item [routerLink]="'form-view'">
+        <mat-icon>visibility</mat-icon>
+        <span>Form View</span>
+      </button>
+      <button mat-menu-item [routerLink]="'form-submit'">
+        <mat-icon>send</mat-icon>
+        <span>Form Submit</span>
+      </button>
+    </mat-menu>
+
+    <button mat-icon-button class="menu-icon" [matMenuTriggerFor]="appMenu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Dynamic Form Builder</span>
+    <span class="spacer"></span>
+    <span>{{ role$ | async }}</span>
+    <button mat-icon-button class="account-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>

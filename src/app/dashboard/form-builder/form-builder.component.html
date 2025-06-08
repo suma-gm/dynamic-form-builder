@@ -1,0 +1,87 @@
+<div class="d-flex justify-content-between builder-container" cdkDropListGroup>
+  <div class="p-4 form-elements">
+    <h2 class="mt-3 text-center">Form Elements</h2>
+    <div
+      class="h-100 p-3 border-secondary d-flex flex-column align-items-center elements-menu"
+      cdkDropList
+      cdkDropListSortingDisabled="true"
+      [cdkDropListData]="'field-selector'"
+    >
+      <button *ngFor="let field of fieldTypes; let i = index" [id]="'btn-'+i" cdkDrag [cdkDragData]="field" class="my-3 p-2 border border-secondary d-flex align-items-center justify-content-start w-75 element-btn">
+        <div class="d-flex p-2 align-items-center justify-content-center">
+          <mat-icon>{{ field.icon }}</mat-icon>
+        </div>
+        <span>{{ field.label }}</span>
+        <div *cdkDragPlaceholder></div>
+      </button>
+    </div>
+  </div>
+
+  <div class="form-canvas p-4 border-bottom border-secondary d-flex flex-column justify-content-between">
+    <div>
+      <h2 class="mt-3 text-center text-xl font-medium">Form Canvas</h2>
+      <div class="d-flex flex-column gap-4">
+        <div class="p4">
+          <div
+            cdkDropList
+            [cdkDropListData]="formFields"
+            (cdkDropListDropped)="onDropToCanvas($event)"
+            [cdkDropListOrientation]="'mixed'"
+            class="form-editor p-5 bg-white rounded-lg border-2 border-dashed border-secondary"
+          >
+            <div>Row</div>
+            <div>
+              <div *ngFor="let field of formFields" class="form-field">
+                <app-form-fields [field]="field" [isAdmin]="isAdmin()" (delete)="onDeleteField($event)" (selectField)="onSelectField($event)"></app-form-fields>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-save-btn">
+      <button mat-button mat-raised-button color="primary" (click)="onSaveForm()" [disabled]="!savedFields.length">Save Form</button>
+    </div>
+  </div>
+
+  <div class="form-settings p-4">
+    <h2 class="mt-3 text-center text-xl font-medium">Form Settings</h2>
+    <div class="d-flex flex-column gap-4">
+      <form *ngIf="selectedField()" [formGroup]="fieldForm" class="d-flex flex-column auth-form justify-content-between">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Label</mat-label>
+          <input matInput type="text" placeholder="Give the field label" formControlName="label">
+        </mat-form-field>
+        <div class="d-flex gap-2">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Is Required?</mat-label>
+            <mat-select matInput formControlName="required">
+              <mat-option [value]="true">True</mat-option>
+              <mat-option [value]="false">False</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Select Field Type</mat-label>
+            <mat-select matInput formControlName="type">
+              <mat-option [value]="inputType.Checkbox">Checkbox</mat-option>
+              <mat-option [value]="inputType.Date">Date</mat-option>
+              <mat-option [value]="inputType.Dropdown">Dropdown</mat-option>
+              <mat-option [value]="inputType.Radio">Radio</mat-option>
+              <mat-option [value]="inputType.Text">Text</mat-option>
+              <mat-option [value]="inputType.TextArea">Textarea</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Help Text</mat-label>
+          <input matInput type="text" placeholder="Enter the help text" formControlName="helpText">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Options</mat-label>
+          <input matInput type="text" placeholder="Enter the other options" formControlName="options">
+        </mat-form-field>
+        <button mat-button mat-raised-button color="primary" (click)="onSaveField(selectedField()?.id)" [disabled]="fieldForm.invalid">Save Field</button>
+      </form>
+    </div>
+  </div>
+</div>

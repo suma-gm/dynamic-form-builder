@@ -1,0 +1,25 @@
+<div class="auth-container">
+  <mat-card class="container p-0">
+    <mat-card-content class="d-flex justify-content-center align-items-center w-100 h-100">
+      <div class="col-12 p-4 h-100 auth-container">
+        <div class="d-flex mb-3">
+          <label class="h3 main-text-primary" for="Heading">Login</label>
+        </div>
+        <form [formGroup]="authForm" class="d-flex flex-column auth-form justify-content-between">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder="Email" formControlName="username" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Select Role</mat-label>
+            <mat-select matInput formControlName="role">
+              <mat-option [value]="role.Admin">Admin</mat-option>
+              <mat-option [value]="role.User">User</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="authForm.invalid">Login</button>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

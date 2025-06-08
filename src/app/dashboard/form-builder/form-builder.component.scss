@@ -1,0 +1,40 @@
+.form-elements, .form-canvas, .form-settings {
+  background: #ffffff;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border-radius: 1%;
+}
+
+.form-elements, .form-settings {
+  width: 400px;
+}
+
+.form-elements {
+  margin-left: 12px;
+}
+
+.form-settings {
+  margin-right: 12px;
+}
+
+.form-canvas {
+  flex: 1 1 100%;
+  margin-left: 15px;
+  margin-right: 15px;
+
+  .form-editor {
+    border: 0.2px dashed;
+  }
+}
+
+.form-save-btn {
+  text-align: right;
+}
+
+.element-btn {
+  border-radius: 2px;
+}
+
+.element-btn:hover {
+  border: 2px solid black !important;
+}

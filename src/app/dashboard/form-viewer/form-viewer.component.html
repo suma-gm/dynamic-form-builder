@@ -1,0 +1,17 @@
+<div class="form-view-container">
+  <h1 class="text-center m-4">Form View</h1>
+  <div>
+    <mat-card *ngFor="let form of dynamicForms()" class="container p-0 d-flex p-4 my-3">
+      <mat-card-content class="d-flex justify-content-center align-items-center w-100 h-100">
+        <div class="col-12 p-4 h-100 auth-container">
+          <div class="d-flex mb-3">
+            <label class="h3 main-text-primary" for="Heading">Login Form</label>
+          </div>
+          <div *ngFor="let field of form.fields" class="form-field">
+            <app-form-fields [field]="field"></app-form-fields>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  margin: 0;
+  font-family: Roboto,"Helvetica Neue", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  background:  linear-gradient(150deg, #b1b1b1, #4a4a4a);
+}
+
+.cdk-drop-list-dragging:not(.elements-menu) {
+  border: 2px solid lightgray !important;
+  background-color: lightgray !important;
+}

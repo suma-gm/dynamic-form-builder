@@ -1,0 +1,52 @@
+<div [ngSwitch]="field?.type">
+  <div class="d-flex" *ngSwitchCase="inputType.Checkbox">
+    <mat-checkbox matInput appearance="fill" color="primary" [value]="value" [required]="field?.required">{{ field?.label }}</mat-checkbox>
+    <button *ngIf="isAdmin" class="action-icon edit-icon" (click)="onSelectField(field?.id)"><mat-icon>settings</mat-icon></button>
+    <button *ngIf="isAdmin" class="action-icon delete-icon" (click)="onDeleteField(field?.id)"><mat-icon>delete</mat-icon></button>
+  </div>
+
+  <div class="d-flex" *ngSwitchCase="inputType.TextArea">
+    <mat-form-field>
+      <textarea matInput [value]="value"></textarea>
+    </mat-form-field>
+    <button *ngIf="isAdmin" class="action-icon edit-icon" (click)="onSelectField(field?.id)"><mat-icon>settings</mat-icon></button>
+    <button *ngIf="isAdmin" class="action-icon delete-icon" (click)="onDeleteField(field?.id)"><mat-icon>delete</mat-icon></button>
+  </div>
+
+  <div class="d-flex" *ngSwitchCase="inputType.Date">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" [value]="value" placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button *ngIf="isAdmin" class="action-icon edit-icon" (click)="onSelectField(field?.id)"><mat-icon>settings</mat-icon></button>
+    <button *ngIf="isAdmin" class="action-icon delete-icon" (click)="onDeleteField(field?.id)"><mat-icon>delete</mat-icon></button>
+  </div>
+
+  <div class="d-flex" *ngSwitchCase="inputType.Dropdown">
+    <mat-form-field>
+      <mat-select placeholder="Select an option" [value]="value">
+        <mat-option *ngFor="let option of []" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button *ngIf="isAdmin" class="action-icon edit-icon" (click)="onSelectField(field?.id)"><mat-icon>settings</mat-icon></button>
+    <button *ngIf="isAdmin" class="action-icon delete-icon" (click)="onDeleteField(field?.id)"><mat-icon>delete</mat-icon></button>
+  </div>
+
+  <div class="d-flex" *ngSwitchCase="inputType.Radio">
+    <mat-radio-button matInput appearance="fill" color="primary" [value]="value" [required]="field?.required">{{ field?.label }}</mat-radio-button>
+    <button *ngIf="isAdmin" class="action-icon edit-icon" (click)="onSelectField(field?.id)"><mat-icon>settings</mat-icon></button>
+    <button *ngIf="isAdmin" class="action-icon delete-icon" (click)="onDeleteField(field?.id)"><mat-icon>delete</mat-icon></button>
+  </div>
+
+  <div class="d-flex" *ngSwitchDefault>
+    <mat-form-field class="w-full" appearance="fill">
+      <mat-label>{{ field?.label }}</mat-label>
+      <input matInput [type]="field?.type || 'text'" [required]="field?.required" [value]="value" />
+    </mat-form-field>
+    <button *ngIf="isAdmin" class="action-icon edit-icon" (click)="onSelectField(field?.id)"><mat-icon>settings</mat-icon></button>
+    <button *ngIf="isAdmin" class="action-icon delete-icon" (click)="onDeleteField(field?.id)"><mat-icon>delete</mat-icon></button>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.toolbar-container {
+  position: fixed;
+  width: 100%;
+  height: 8%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.menu-icon, .account-icon {
+  background: none;
+  color: white;
+  border: none;
+  display: flex;
+}
